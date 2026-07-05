@@ -11,10 +11,21 @@ button { background-color: #2d5a27; color: white; border: none; padding: 15px; b
 </head>
 <body>
 <h1>Dharamshala Guide</h1>
+
+<!-- Блок Приветствие -->
 <div class="card">
-<h3>Маклеод-Ганж</h3>
-<p>Авторская прогулка</p>
-<button onclick="alert('Работает!')">Слушать</button>
+    <h3>Приветствие</h3>
+    <p>От автора: мой взгляд на город</p>
+    <!-- Замените 'welcome.mp3' на имя вашего аудиофайла -->
+    <audio id="audio-welcome" src="welcome.mp3"></audio>
+    <button onclick="document.getElementById('audio-welcome').play()">Прослушать</button>
 </div>
+
+<div class="card">
+    <h3>Маклеод-Ганж</h3>
+    <p>Авторская прогулка</p>
+    <button onclick="alert('Работает!')">Слушать</button>
+</div>
+
 </body>
 </html>

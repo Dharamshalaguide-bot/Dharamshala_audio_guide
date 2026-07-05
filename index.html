@@ -7,29 +7,48 @@ HTML
 body { font-family: sans-serif; background-color: #fdfbf7; display: flex; flex-direction: column; align-items: center; padding: 20px; }
 .card { background: white; border-radius: 16px; padding: 20px; width: 300px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
 button { background-color: #2d5a27; color: white; border: none; padding: 15px; border-radius: 10px; width: 100%; cursor: pointer; }
+
+/* Плеер изначально скрыт */
+#myAudioPlayer { display: none; margin-top: 15px; width: 100%; }
 </style>
 </head>
 <body>
 
 <h1>Dharamshala Guide</h1>
 
-<!-- Блок Приветствие с плеером -->
 <div class="card">
     <h3>Приветствие</h3>
     <p>Знакомство</p>
-    <!-- controls добавляет бегунок и кнопки управления -->
-    <audio controls style="width: 100%; margin-top: 10px;">
+    
+    <!-- Кнопка -->
+    <button id="playBtn" onclick="showPlayer()">Слушать</button>
+    
+    <!-- Плеер, который появится при нажатии -->
+    <audio id="myAudioPlayer" controls>
         <source src="Welcome.mp3" type="audio/mpeg">
-        Ваш браузер не поддерживает воспроизведение аудио.
+        Ваш браузер не поддерживает аудио.
     </audio>
 </div>
 
-<!-- Блок Экскурсии -->
 <div class="card">
     <h3>Маклеод-Ганж</h3>
     <p>Авторская прогулка</p>
     <button onclick="alert('Работает!')">Слушать</button>
 </div>
+
+<script>
+function showPlayer() {
+    var player = document.getElementById("myAudioPlayer");
+    var btn = document.getElementById("playBtn");
+    
+    // Показываем плеер
+    player.style.display = "block";
+    // Скрываем кнопку
+    btn.style.display = "none";
+    // Начинаем воспроизведение
+    player.play();
+}
+</script>
 
 </body>
 </html>

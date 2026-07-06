@@ -1,107 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-<meta charset="UTF-8">
-<title>Dharamshala Guide</title>
-<style>
-    /* Основные стили */
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        /* Здесь происходит магия: добавляем фото гор */
-        background-image: url('https://images.unsplash.com/photo-1591807826748-e260c2699a5c?q=80&w=1920&auto=format&fit=crop');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed; /* Чтобы фото не дергалось при прокрутке */
-        
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 40px 20px;
-        margin: 0;
-        min-height: 100vh;
-    }
+    <meta charset="UTF-8">
+    <title>Dharamshala Guide</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            /* Имя файла должно совпадать с тем, что вы загрузите на GitHub */
+            background-image: url('hills.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-    /* Заголовок */
-    h1 {
-        color: white; /* Белый цвет текста на фоне гор */
-        text-shadow: 0 2px 5px rgba(0,0,0,0.6); /* Тень для читаемости */
-        margin-bottom: 40px;
-        font-size: 3em;
-    }
+        h1 {
+            color: #ffffff;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+            font-size: 3em;
+            margin-bottom: 40px;
+            text-align: center;
+        }
 
-    /* Карточки */
-    .card {
-        /* Полупрозрачный белый фон для карточек, чтобы текст был виден */
-        background: rgba(255, 255, 255, 0.85); 
-        backdrop-filter: blur(5px); /* Легкое размытие фона под карточкой */
-        border-radius: 20px;
-        padding: 25px;
-        width: 320px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-        margin-bottom: 30px;
-        text-align: left;
-    }
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 25px;
+            width: 300px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+        }
 
-    .card h3 { margin: 0 0 5px 0; color: #333; }
-    .card p { margin: 0 0 15px 0; color: #666; font-size: 0.9em; }
+        button {
+            background-color: #2d5a27;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            width: 100%;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+        }
 
-    /* Кнопки и плееры */
-    button {
-        background-color: #2d5a27; /* Зеленый цвет */
-        color: white;
-        border: none;
-        padding: 16px;
-        border-radius: 12px;
-        width: 100%;
-        cursor: pointer;
-        font-size: 1em;
-        font-weight: bold;
-        transition: background-color 0.3s;
-    }
-    button:hover { background-color: #3b7434; }
-
-    .audio-player {
-        display: none;
-        margin-top: 15px;
-        width: 100%;
-        outline: none; /* Убираем синюю обводку */
-    }
-</style>
+        .audio-player {
+            display: none;
+            margin-top: 15px;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
 
-<h1>Dharamshala Guide</h1>
+    <h1>Dharamshala Guide</h1>
 
-<div class="card">
-    <h3>Приветствие</h3>
-    <p>Знакомство с гидом и местностью</p>
-    <button id="btn1" onclick="showPlayer('player1', 'btn1')">Слушать</button>
-    <audio id="player1" class="audio-player" controls>
-        <source src="Welcome.mp3" type="audio/mpeg">
-        Ваш браузер не поддерживает аудио.
-    </audio>
-</div>
+    <div class="card">
+        <h3>Приветствие</h3>
+        <p>Знакомство с гидом</p>
+        <button id="btn1" onclick="showPlayer('player1', 'btn1')">Слушать</button>
+        <audio id="player1" class="audio-player" controls>
+            <source src="Welcome.mp3" type="audio/mpeg">
+        </audio>
+    </div>
 
-<div class="card">
-    <h3>Маклеод-Ганж</h3>
-    <p>Авторская прогулка по Верхней Дхарамшале</p>
-    <button id="btn2" onclick="showPlayer('player2', 'btn2')">Слушать</button>
-    <audio id="player2" class="audio-player" controls>
-        <source src="Mcleodganj.mp3" type="audio/mpeg">
-        Ваш браузер не поддерживает аудио.
-    </audio>
-</div>
+    <div class="card">
+        <h3>Маклеод-Ганж</h3>
+        <p>Авторская прогулка</p>
+        <button id="btn2" onclick="showPlayer('player2', 'btn2')">Слушать</button>
+        <audio id="player2" class="audio-player" controls>
+            <source src="Mcleodganj.mp3" type="audio/mpeg">
+        </audio>
+    </div>
 
-<script>
-function showPlayer(playerId, btnId) {
-    var player = document.getElementById(playerId);
-    var btn = document.getElementById(btnId);
-    player.style.display = "block";
-    btn.style.display = "none";
-    player.play();
-}
-</script>
+    <script>
+        function showPlayer(playerId, btnId) {
+            var player = document.getElementById(playerId);
+            var btn = document.getElementById(btnId);
+            player.style.display = "block";
+            btn.style.display = "none";
+            player.play();
+        }
+    </script>
 
 </body>
 </html>

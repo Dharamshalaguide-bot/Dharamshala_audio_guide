@@ -30,7 +30,6 @@
         .content { display: none; margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; text-align: left; }
         .stop { padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
         
-        /* Плеер */
         .audio-container { margin-top: 10px; display: none; width: 100%; }
         audio { width: 100%; height: 35px; }
 
@@ -46,34 +45,33 @@
     <div class="card">
         <h3>Добро пожаловать</h3>
         <p>Знакомство с гидом</p>
-        <button class="btn btn-full" onclick="document.getElementById('welcomeAudio').style.display='block'; document.getElementById('welcomeAudio').play(); this.style.display='none'">Слушать приветствие</button>
-        <div id="welcomeAudio" class="audio-container"><audio controls><source src="Welcome.mp3"></audio></div>
+        <button class="btn btn-full" onclick="document.getElementById('welcomeAudio').style.display='block'; document.getElementById('audioWelcome').play(); this.style.display='none'">Слушать приветствие</button>
+        <div id="welcomeAudio" class="audio-container"><audio id="audioWelcome" controls><source src="Welcome.mp3"></audio></div>
     </div>
 
     <div class="card">
         <div id="closedState">
-            <h3>Кора вокруг резиденции</h3>
-            <p>Путь паломников</p>
+            <h3>Кора вокруг резиденции Далай-ламы</h3>
+            <p>Традиционный путь паломников</p>
             <button class="btn btn-full" onclick="toggleRoute(true)">Раскрыть маршрут</button>
         </div>
         
         <div id="openState" class="content">
             <div class="header-active" onclick="toggleRoute(false)">
-                <div><h3 style="margin:0;">Кора вокруг резиденции</h3><p style="margin:0; font-size: 0.8em; color: #888;">Путь паломников</p></div>
+                <div><h3 style="margin:0;">Кора вокруг резиденции Далай-ламы</h3><p style="margin:0; font-size: 0.8em; color: #888;">Традиционный путь паломников</p></div>
                 <span class="arrow-up">▲</span>
             </div>
             
             <button class="btn btn-outline" style="margin-bottom: 15px;" onclick="document.getElementById('mapModal').style.display='block'">Посмотреть карту маршрута</button>
             
-            <div class="stop">
-                <div style="display:flex; justify-content:space-between; align-items:center;"><h4>1. Старт Коры</h4><button class="btn btn-small" onclick="document.getElementById('p1').style.display='block'; document.getElementById('a1').play()">Слушать</button></div>
-                <div id="p1" class="audio-container"><audio id="a1" controls><source src="stop1.mp3"></audio></div>
-            </div>
-            <div class="stop">
-                <div style="display:flex; justify-content:space-between; align-items:center;"><h4>2. Молитвенные барабаны</h4><button class="btn btn-small" onclick="document.getElementById('p2').style.display='block'; document.getElementById('a2').play()">Слушать</button></div>
-                <div id="p2" class="audio-container"><audio id="a2" controls><source src="stop2.mp3"></audio></div>
-            </div>
-            </div>
+            <div class="stop"><div style="display:flex; justify-content:space-between; align-items:center;"><h4>1. Старт Коры</h4><button class="btn btn-small" onclick="document.getElementById('p1').style.display='block'; document.getElementById('a1').play()">Слушать</button></div><div id="p1" class="audio-container"><audio id="a1" controls><source src="stop1.mp3"></audio></div></div>
+            <div class="stop"><div style="display:flex; justify-content:space-between; align-items:center;"><h4>2. Молитвенные барабаны</h4><button class="btn btn-small" onclick="document.getElementById('p2').style.display='block'; document.getElementById('a2').play()">Слушать</button></div><div id="p2" class="audio-container"><audio id="a2" controls><source src="stop2.mp3"></audio></div></div>
+            <div class="stop"><div style="display:flex; justify-content:space-between; align-items:center;"><h4>3. Молитвенные флажки</h4><button class="btn btn-small" onclick="document.getElementById('p3').style.display='block'; document.getElementById('a3').play()">Слушать</button></div><div id="p3" class="audio-container"><audio id="a3" controls><source src="stop3.mp3"></audio></div></div>
+            <div class="stop"><div style="display:flex; justify-content:space-between; align-items:center;"><h4>4. Вид на Гималаи</h4><button class="btn btn-small" onclick="document.getElementById('p4').style.display='block'; document.getElementById('a4').play()">Слушать</button></div><div id="p4" class="audio-container"><audio id="a4" controls><source src="stop4.mp3"></audio></div></div>
+            <div class="stop"><div style="display:flex; justify-content:space-between; align-items:center;"><h4>5. Ступы и мантры</h4><button class="btn btn-small" onclick="document.getElementById('p5').style.display='block'; document.getElementById('a5').play()">Слушать</button></div><div id="p5" class="audio-container"><audio id="a5" controls><source src="stop5.mp3"></audio></div></div>
+            <div class="stop"><div style="display:flex; justify-content:space-between; align-items:center;"><h4>6. Мемориальная роща</h4><button class="btn btn-small" onclick="document.getElementById('p6').style.display='block'; document.getElementById('a6').play()">Слушать</button></div><div id="p6" class="audio-container"><audio id="a6" controls><source src="stop6.mp3"></audio></div></div>
+            <div class="stop"><div style="display:flex; justify-content:space-between; align-items:center;"><h4>7. Ворота храма</h4><button class="btn btn-small" onclick="document.getElementById('p7').style.display='block'; document.getElementById('a7').play()">Слушать</button></div><div id="p7" class="audio-container"><audio id="a7" controls><source src="stop7.mp3"></audio></div></div>
+        </div>
     </div>
 
     <div id="mapModal" class="modal" onclick="this.style.display='none'">

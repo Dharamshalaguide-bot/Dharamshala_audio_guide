@@ -2,90 +2,80 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dharamshala Guide</title>
     <style>
+        :root { --accent: #c5a059; --glass: rgba(255, 255, 255, 0.85); }
         body {
             font-family: 'Segoe UI', sans-serif;
-            /* Имя файла должно совпадать с тем, что вы загрузите на GitHub */
-            background-image: url('hills.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
+            background: url('hills.jpg') center/cover fixed;
+            margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh;
         }
-
-        h1 {
-            color: #ffffff;
-            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
-            font-size: 3em;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
+        h1 { color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); font-size: 2.5em; margin-bottom: 30px; }
+        
         .card {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            padding: 25px;
-            width: 300px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-            margin-bottom: 20px;
+            background: var(--glass); backdrop-filter: blur(10px);
+            border-radius: 25px; padding: 30px; width: 90%; max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin-bottom: 25px;
+            text-align: center; transition: transform 0.3s;
         }
+        h3 { margin: 0 0 10px; color: #333; font-weight: 600; }
+        p { color: #555; margin-bottom: 20px; }
 
         button {
-            background-color: #2d5a27;
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 12px;
-            width: 100%;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 16px;
+            background: #2d5a27; color: #fff; border: none; padding: 12px 20px;
+            border-radius: 50px; cursor: pointer; font-weight: 600; width: 100%; transition: 0.3s;
         }
+        button:hover { background: #3d7a36; transform: scale(1.02); }
 
-        .audio-player {
-            display: none;
-            margin-top: 15px;
-            width: 100%;
-        }
+        .audio-player { display: none; width: 100%; margin-top: 15px; }
+
+        /* Стили модального окна */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; }
+        .modal-content { position: relative; width: 95%; max-width: 800px; margin: 10% auto; background: #fff; padding: 10px; border-radius: 20px; }
+        .close-btn { position: absolute; top: -40px; right: 0; color: #fff; cursor: pointer; font-size: 24px; }
     </style>
 </head>
 <body>
 
     <h1>Dharamshala Guide</h1>
 
+    <!-- Карта как отдельная красивая плашка -->
+    <div class="card">
+        <h3>Маршрут Коры</h3>
+        <p>Интерактивная карта святых мест</p>
+        <button onclick="document.getElementById('mapModal').style.display='block'">Открыть карту</button>
+    </div>
+
+    <!-- Блоки аудио -->
     <div class="card">
         <h3>Приветствие</h3>
         <p>Знакомство с гидом</p>
         <button id="btn1" onclick="showPlayer('player1', 'btn1')">Слушать</button>
-        <audio id="player1" class="audio-player" controls>
-            <source src="Welcome.mp3" type="audio/mpeg">
-        </audio>
+        <audio id="player1" class="audio-player" controls><source src="Welcome.mp3" type="audio/mpeg"></audio>
     </div>
 
     <div class="card">
         <h3>Маклеод-Ганж</h3>
         <p>Авторская прогулка</p>
         <button id="btn2" onclick="showPlayer('player2', 'btn2')">Слушать</button>
-        <audio id="player2" class="audio-player" controls>
-            <source src="Mcleodganj.mp3" type="audio/mpeg">
-        </audio>
+        <audio id="player2" class="audio-player" controls><source src="Mcleodganj.mp3" type="audio/mpeg"></audio>
+    </div>
+
+    <!-- Модальное окно с картой -->
+    <div id="mapModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="this.parentElement.parentElement.style.display='none'">&times;</span>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m52!1m12!1m3!1d1045.9900366916454!2d76.32403834286286!3d32.23231950792452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m37!3e2!4m5!1s0x391b516068f7cfd7%3A0x5aec125fb5dc2930!2sStart%20of%20the%20Kora%20Circuit%2C%20Temple%20Rd%2C%20McLeod%20Ganj%2C%20Dharamshala%2C%20Himachal%20Pradesh%20176215%2C%20%D0%98%D0%BD%D0%B4%D0%B8%D1%8F!3m2!1d32.2320218!2d76.3252083!4m5!1s0x391b510049b26e5d%3A0xdfa6f391303dee3d!2sCircumambulation%20Way%20Dalai%20Lama%20Temple%2C%2068JG%2BF9P%2C%20Dharamshala%2C%20Himachal%20Pradesh%20176215%2C%20%D0%98%D0%BD%D0%B4%D0%B8%D1%8F!3m2!1d32.2312206!2d76.3259633!4m3!3m2!1d32.2292724!2d76.32523979999999!4m3!3m2!1d32.2283551!2d76.3233343!4m3!3m2!1d32.2298621!2d76.3226992!4m3!3m2!1d32.2310939!2d76.3237216!4m3!3m2!1d32.23307!2d76.32452719999999!4m3!3m2!1d32.232599!2d76.3248759!5e0!3m2!1sru!2sru!4v1783443888358!5m2!1sru!2sru" width="100%" height="450" style="border:0; border-radius:15px;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
     </div>
 
     <script>
         function showPlayer(playerId, btnId) {
-            var player = document.getElementById(playerId);
-            var btn = document.getElementById(btnId);
-            player.style.display = "block";
-            btn.style.display = "none";
-            player.play();
+            document.getElementById(playerId).style.display = "block";
+            document.getElementById(btnId).style.display = "none";
+            document.getElementById(playerId).play();
         }
     </script>
-
 </body>
 </html>

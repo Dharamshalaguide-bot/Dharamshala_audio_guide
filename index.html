@@ -5,24 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dharamshala Guide</title>
     <style>
-        :root { --accent: #2d5a27; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: url('hills.jpg') center/cover fixed; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        :root { --accent: #2d5a27; --radius: 12px; }
+        body { font-family: 'Segoe UI', sans-serif; background: url('hills.jpg') center/cover fixed; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
         
         h1 { color: #ffffff; text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); margin-bottom: 40px; font-weight: 300; letter-spacing: 1px; }
         
         .card { background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(15px); border-radius: 20px; padding: 25px; width: 90%; max-width: 450px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); margin-bottom: 20px; }
         h3 { margin: 0 0 5px; font-size: 1.2em; color: #333; }
         p { margin: 0 0 15px; font-size: 0.95em; color: #555; line-height: 1.5; }
-        
-        .btn-open { background: var(--accent); color: white; border: none; padding: 12px; border-radius: 12px; width: 100%; cursor: pointer; font-weight: 600; font-size: 0.9em; }
+
+        /* ЕДИНЫЙ СТИЛЬ КНОПОК */
+        .btn { 
+            font-family: inherit; font-size: 0.9em; font-weight: 600; 
+            padding: 12px 20px; border-radius: var(--radius); 
+            border: none; cursor: pointer; transition: 0.3s;
+            display: inline-block; text-align: center;
+        }
+        .btn-full { background: var(--accent); color: white; width: 100%; }
+        .btn-outline { background: transparent; color: var(--accent); border: 2px solid var(--accent); width: 100%; }
+        .btn-outline:hover { background: var(--accent); color: white; }
+        .btn-small { background: var(--accent); color: white; padding: 6px 14px; border-radius: 15px; font-size: 0.8em; }
+
         .header-active { display: flex; justify-content: space-between; align-items: center; cursor: pointer; margin-bottom: 15px; }
         .arrow-up { font-size: 1.2em; color: var(--accent); }
-        
         .content { display: none; margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; }
-        .map-btn { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 10px; border-radius: 10px; width: 100%; cursor: pointer; font-size: 0.9em; margin-bottom: 20px; }
         .stop { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
         .stop h4 { margin: 0; font-size: 0.95em; font-weight: 500; }
-        .play-small { background: var(--accent); color: white; border: none; padding: 6px 14px; border-radius: 15px; cursor: pointer; font-size: 0.8em; }
 
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; }
         .modal-content { position: relative; width: 90%; max-width: 600px; margin: 10% auto; background: #fff; padding: 10px; border-radius: 15px; }
@@ -35,7 +43,7 @@
     <div class="card">
         <h3>Добро пожаловать</h3>
         <p>Начните ваше путешествие по Дхарамсале</p>
-        <button class="play-small" onclick="document.getElementById('welcomeAudio').play()">Слушать приветствие</button>
+        <button class="btn btn-full" onclick="document.getElementById('welcomeAudio').play()">Слушать приветствие</button>
         <audio id="welcomeAudio"><source src="Welcome.mp3"></audio>
     </div>
 
@@ -43,7 +51,7 @@
         <div id="closedState">
             <h3>Кора вокруг резиденции Далай-ламы</h3>
             <p>Традиционный путь паломников</p>
-            <button class="btn-open" onclick="toggleRoute(true)">Раскрыть маршрут</button>
+            <button class="btn btn-full" onclick="toggleRoute(true)">Раскрыть маршрут</button>
         </div>
         
         <div id="openState" class="content">
@@ -55,15 +63,15 @@
                 <span class="arrow-up">▲</span>
             </div>
             
-            <button class="map-btn" onclick="document.getElementById('mapModal').style.display='block'">Посмотреть карту маршрута</button>
+            <button class="btn btn-outline" onclick="document.getElementById('mapModal').style.display='block'">Посмотреть карту маршрута</button>
             
-            <div class="stop"><h4>1. Старт Коры</h4><button class="play-small" onclick="document.getElementById('a1').play()">Слушать</button><audio id="a1"><source src="stop1.mp3"></audio></div>
-            <div class="stop"><h4>2. Молитвенные барабаны</h4><button class="play-small" onclick="document.getElementById('a2').play()">Слушать</button><audio id="a2"><source src="stop2.mp3"></audio></div>
-            <div class="stop"><h4>3. Молитвенные флажки</h4><button class="play-small" onclick="document.getElementById('a3').play()">Слушать</button><audio id="a3"><source src="stop3.mp3"></audio></div>
-            <div class="stop"><h4>4. Вид на Гималаи</h4><button class="play-small" onclick="document.getElementById('a4').play()">Слушать</button><audio id="a4"><source src="stop4.mp3"></audio></div>
-            <div class="stop"><h4>5. Ступы и мантры</h4><button class="play-small" onclick="document.getElementById('a5').play()">Слушать</button><audio id="a5"><source src="stop5.mp3"></audio></div>
-            <div class="stop"><h4>6. Мемориальная роща</h4><button class="play-small" onclick="document.getElementById('a6').play()">Слушать</button><audio id="a6"><source src="stop6.mp3"></audio></div>
-            <div class="stop"><h4>7. Ворота храма</h4><button class="play-small" onclick="document.getElementById('a7').play()">Слушать</button><audio id="a7"><source src="stop7.mp3"></audio></div>
+            <div class="stop"><h4>1. Старт Коры</h4><button class="btn btn-small" onclick="document.getElementById('a1').play()">Слушать</button><audio id="a1"><source src="stop1.mp3"></audio></div>
+            <div class="stop"><h4>2. Молитвенные барабаны</h4><button class="btn btn-small" onclick="document.getElementById('a2').play()">Слушать</button><audio id="a2"><source src="stop2.mp3"></audio></div>
+            <div class="stop"><h4>3. Молитвенные флажки</h4><button class="btn btn-small" onclick="document.getElementById('a3').play()">Слушать</button><audio id="a3"><source src="stop3.mp3"></audio></div>
+            <div class="stop"><h4>4. Вид на Гималаи</h4><button class="btn btn-small" onclick="document.getElementById('a4').play()">Слушать</button><audio id="a4"><source src="stop4.mp3"></audio></div>
+            <div class="stop"><h4>5. Ступы и мантры</h4><button class="btn btn-small" onclick="document.getElementById('a5').play()">Слушать</button><audio id="a5"><source src="stop5.mp3"></audio></div>
+            <div class="stop"><h4>6. Мемориальная роща</h4><button class="btn btn-small" onclick="document.getElementById('a6').play()">Слушать</button><audio id="a6"><source src="stop6.mp3"></audio></div>
+            <div class="stop"><h4>7. Ворота храма</h4><button class="btn btn-small" onclick="document.getElementById('a7').play()">Слушать</button><audio id="a7"><source src="stop7.mp3"></audio></div>
         </div>
     </div>
 

@@ -8,14 +8,16 @@
         :root { --accent: #2d5a27; }
         body { font-family: 'Segoe UI', sans-serif; background: url('hills.jpg') center/cover fixed; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
         .card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border-radius: 20px; padding: 25px; width: 90%; max-width: 450px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin-bottom: 20px; text-align: center; }
+        h1 { color: #ffffff; text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); margin-bottom: 30px; font-weight: 300; }
         
+        .btn-toggle { background: var(--accent); color: white; border: none; padding: 15px; border-radius: 15px; width: 100%; cursor: pointer; font-weight: bold; transition: 0.3s; }
         .content { display: none; margin-top: 15px; text-align: left; }
-        .btn-toggle { background: var(--accent); color: white; border: none; padding: 15px; border-radius: 15px; width: 100%; cursor: pointer; font-weight: bold; }
-        .map-btn { background: transparent; color: var(--accent); border: 2px solid var(--accent); padding: 12px; border-radius: 15px; width: 100%; cursor: pointer; font-weight: bold; margin-bottom: 15px; }
+        
+        .map-btn { background: transparent; color: var(--accent); border: 2px solid var(--accent); padding: 12px; border-radius: 15px; width: 100%; cursor: pointer; font-weight: bold; margin-bottom: 15px; transition: 0.3s; }
         .map-btn:hover { background: var(--accent); color: white; }
         
         .stop { border-top: 1px solid #ddd; padding: 15px 0; }
-        .play-small { background: var(--accent); color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 0.8em; margin-top: 5px; }
+        .play-small { background: var(--accent); color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 0.85em; margin-top: 5px; }
         
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; }
         .modal-content { position: relative; width: 95%; max-width: 700px; margin: 10% auto; background: #fff; padding: 10px; border-radius: 20px; }
@@ -25,17 +27,19 @@
 
     <h1>Dharamshala Guide</h1>
 
+    <!-- 1. ПРИВЕТСТВИЕ -->
     <div class="card">
         <h3>Добро пожаловать</h3>
         <p>Начните ваше путешествие по Дхарамсале</p>
-        <button class="btn-toggle" onclick="document.getElementById('welcomeAudio').play(); this.style.display='none'">Слушать приветствие</button>
-        <audio id="welcomeAudio" class="audio-player" style="display:none;" controls><source src="Welcome.mp3"></audio>
+        <button class="btn-toggle" onclick="document.getElementById('welcomeAudio').style.display='block'; this.style.display='none'">Слушать приветствие</button>
+        <audio id="welcomeAudio" style="display:none; width:100%;" controls><source src="Welcome.mp3" type="audio/mpeg"></audio>
     </div>
 
+    <!-- 2. КОРА (Раскрывающийся список) -->
     <div class="card">
         <h3>Кора вокруг резиденции Далай-ламы</h3>
         <p>Традиционный путь паломников</p>
-        <button class="btn-toggle" onclick="toggleAccordion()">Раскрыть маршрут</button>
+        <button class="btn-toggle" onclick="toggleAccordion(this)">Раскрыть маршрут</button>
         
         <div id="routeContent" class="content">
             <button class="map-btn" onclick="document.getElementById('mapModal').style.display='block'">Посмотреть карту маршрута</button>
@@ -50,16 +54,23 @@
         </div>
     </div>
 
+    <!-- МОДАЛЬНОЕ ОКНО -->
     <div id="mapModal" class="modal" onclick="this.style.display='none'">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <iframe src="ССЫЛКА_НА_ВАШУ_КАРТУ" width="100%" height="400" style="border:0; border-radius:15px;"></iframe>
+            <iframe src="ВАША_ССЫЛКА_НА_КАРТУ" width="100%" height="400" style="border:0; border-radius:15px;"></iframe>
         </div>
     </div>
 
     <script>
-        function toggleAccordion() {
+        function toggleAccordion(btn) {
             var content = document.getElementById("routeContent");
-            content.style.display = (content.style.display === "block") ? "none" : "block";
+            if (content.style.display === "block") {
+                content.style.display = "none";
+                btn.innerHTML = "Раскрыть маршрут";
+            } else {
+                content.style.display = "block";
+                btn.innerHTML = "Свернуть маршрут";
+            }
         }
     </script>
 </body>

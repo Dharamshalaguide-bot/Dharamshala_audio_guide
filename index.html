@@ -19,26 +19,21 @@
         h3 { margin: 0 0 10px; font-size: 1.2em; color: #333; }
         p { margin: 0 0 15px; font-size: 0.95em; color: #555; line-height: 1.5; }
 
-        .btn { 
-            font-family: inherit; font-size: 0.9em; font-weight: 600; 
-            padding: 12px 20px; border-radius: var(--radius); 
-            border: none; cursor: pointer; transition: 0.3s;
-            display: inline-block; text-align: center;
-        }
+        .btn { font-family: inherit; font-size: 0.9em; font-weight: 600; padding: 12px 20px; border-radius: var(--radius); border: none; cursor: pointer; transition: 0.3s; display: inline-block; text-align: center; }
         .btn-full { background: var(--accent); color: white; width: 100%; }
         .btn-outline { background: transparent; color: var(--accent); border: 2px solid var(--accent); width: 100%; }
-        .btn-outline:hover { background: var(--accent); color: white; }
         .btn-small { background: var(--accent); color: white; padding: 6px 14px; border-radius: 15px; font-size: 0.8em; }
 
-        /* СТРЕЛКА СПРАВА */
         .header-active { display: flex; justify-content: space-between; align-items: center; cursor: pointer; margin-bottom: 15px; }
         .arrow-up { font-size: 1.2em; color: var(--accent); margin-left: 10px; }
         
         .content { display: none; margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; text-align: left; }
-        .stop { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
-        .stop h4 { margin: 0; font-size: 0.95em; font-weight: 500; }
+        .stop { padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
+        
+        /* Плеер */
+        .audio-container { margin-top: 10px; display: none; width: 100%; }
+        audio { width: 100%; height: 35px; }
 
-        /* МОДАЛЬНОЕ ОКНО И КРЕСТИК */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; }
         .modal-content { position: relative; width: 90%; max-width: 600px; margin: 5% auto; background: #fff; padding: 10px; border-radius: 15px; }
         .close-btn { position: absolute; top: -40px; right: 0; color: white; font-size: 2em; cursor: pointer; }
@@ -51,41 +46,39 @@
     <div class="card">
         <h3>Добро пожаловать</h3>
         <p>Знакомство с гидом</p>
-        <button class="btn btn-full" onclick="document.getElementById('welcomeAudio').play()">Слушать приветствие</button>
-        <audio id="welcomeAudio"><source src="Welcome.mp3"></audio>
+        <button class="btn btn-full" onclick="document.getElementById('welcomeAudio').style.display='block'; document.getElementById('welcomeAudio').play(); this.style.display='none'">Слушать приветствие</button>
+        <div id="welcomeAudio" class="audio-container"><audio controls><source src="Welcome.mp3"></audio></div>
     </div>
 
-    <div class="card" id="routeCard">
+    <div class="card">
         <div id="closedState">
-            <h3>Кора вокруг резиденции Далай-ламы</h3>
-            <p>Традиционный путь паломников</p>
+            <h3>Кора вокруг резиденции</h3>
+            <p>Путь паломников</p>
             <button class="btn btn-full" onclick="toggleRoute(true)">Раскрыть маршрут</button>
         </div>
         
         <div id="openState" class="content">
             <div class="header-active" onclick="toggleRoute(false)">
-                <div>
-                    <h3 style="margin:0;">Кора вокруг резиденции</h3>
-                    <p style="margin:0; font-size: 0.8em; color: #888;">Путь паломников</p>
-                </div>
+                <div><h3 style="margin:0;">Кора вокруг резиденции</h3><p style="margin:0; font-size: 0.8em; color: #888;">Путь паломников</p></div>
                 <span class="arrow-up">▲</span>
             </div>
             
             <button class="btn btn-outline" style="margin-bottom: 15px;" onclick="document.getElementById('mapModal').style.display='block'">Посмотреть карту маршрута</button>
             
-            <div class="stop"><h4>1. Старт Коры</h4><button class="btn btn-small" onclick="document.getElementById('a1').play()">Слушать</button><audio id="a1"><source src="stop1.mp3"></audio></div>
-            <div class="stop"><h4>2. Молитвенные барабаны</h4><button class="btn btn-small" onclick="document.getElementById('a2').play()">Слушать</button><audio id="a2"><source src="stop2.mp3"></audio></div>
-            <div class="stop"><h4>3. Молитвенные флажки</h4><button class="btn btn-small" onclick="document.getElementById('a3').play()">Слушать</button><audio id="a3"><source src="stop3.mp3"></audio></div>
-            <div class="stop"><h4>4. Вид на Гималаи</h4><button class="btn btn-small" onclick="document.getElementById('a4').play()">Слушать</button><audio id="a4"><source src="stop4.mp3"></audio></div>
-            <div class="stop"><h4>5. Ступы и мантры</h4><button class="btn btn-small" onclick="document.getElementById('a5').play()">Слушать</button><audio id="a5"><source src="stop5.mp3"></audio></div>
-            <div class="stop"><h4>6. Мемориальная роща</h4><button class="btn btn-small" onclick="document.getElementById('a6').play()">Слушать</button><audio id="a6"><source src="stop6.mp3"></audio></div>
-            <div class="stop"><h4>7. Ворота храма</h4><button class="btn btn-small" onclick="document.getElementById('a7').play()">Слушать</button><audio id="a7"><source src="stop7.mp3"></audio></div>
-        </div>
+            <div class="stop">
+                <div style="display:flex; justify-content:space-between; align-items:center;"><h4>1. Старт Коры</h4><button class="btn btn-small" onclick="document.getElementById('p1').style.display='block'; document.getElementById('a1').play()">Слушать</button></div>
+                <div id="p1" class="audio-container"><audio id="a1" controls><source src="stop1.mp3"></audio></div>
+            </div>
+            <div class="stop">
+                <div style="display:flex; justify-content:space-between; align-items:center;"><h4>2. Молитвенные барабаны</h4><button class="btn btn-small" onclick="document.getElementById('p2').style.display='block'; document.getElementById('a2').play()">Слушать</button></div>
+                <div id="p2" class="audio-container"><audio id="a2" controls><source src="stop2.mp3"></audio></div>
+            </div>
+            </div>
     </div>
 
     <div id="mapModal" class="modal" onclick="this.style.display='none'">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="document.getElementById('mapModal').style.display='none'">&times;</span>
+            <span class="close-btn" onclick="document.getElementById('mapModal').style.display='none'">×</span>
             <iframe src="https://www.google.com/maps/embed?pb=!1m52!1m12!1m3!1d1045.9900366916454!2d76.32403834286286!3d32.23231950792452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m37!3e2!4m5!1s0x391b516068f7cfd7%3A0x5aec125fb5dc2930!2sStart%20of%20the%20Kora%20Circuit%2C%20Temple%20Rd%2C%20McLeod%20Ganj%2C%20Dharamshala%2C%20Himachal%20Pradesh%20176215%2C%20%D0%98%D0%BD%D0%B4%D0%B8%D1%8F!3m2!1d32.2320218!2d76.3252083!4m5!1s0x391b510049b26e5d%3A0xdfa6f391303dee3d!2sCircumambulation%20Way%20Dalai%20Lama%20Temple%2C%2068JG%2BF9P%2C%20Dharamshala%2C%20Himachal%20Pradesh%20176215%2C%20%D0%98%D0%BD%D0%B4%D0%B8%D1%8F!3m2!1d32.2312206!2d76.3259633!4m3!3m2!1d32.2292724!2d76.32523979999999!4m3!3m2!1d32.2283551!2d76.3233343!4m3!3m2!1d32.2298621!2d76.3226992!4m3!3m2!1d32.2310939!2d76.3237216!4m3!3m2!1d32.23307!2d76.32452719999999!4m3!3m2!1d32.232599!2d76.3248759!5e0!3m2!1sru!2sru!4v1783443888358!5m2!1sru!2sru" width="100%" height="400" style="border:0; border-radius:15px;"></iframe>
         </div>
     </div>

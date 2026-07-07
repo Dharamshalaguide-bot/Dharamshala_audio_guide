@@ -30,15 +30,18 @@
         .btn-outline:hover { background: var(--accent); color: white; }
         .btn-small { background: var(--accent); color: white; padding: 6px 14px; border-radius: 15px; font-size: 0.8em; }
 
-        .header-active { cursor: pointer; margin-bottom: 15px; }
-        .arrow-up { display: block; font-size: 1.2em; color: var(--accent); margin-top: 5px; }
+        /* СТРЕЛКА СПРАВА */
+        .header-active { display: flex; justify-content: space-between; align-items: center; cursor: pointer; margin-bottom: 15px; }
+        .arrow-up { font-size: 1.2em; color: var(--accent); margin-left: 10px; }
         
         .content { display: none; margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; text-align: left; }
         .stop { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
         .stop h4 { margin: 0; font-size: 0.95em; font-weight: 500; }
 
+        /* МОДАЛЬНОЕ ОКНО И КРЕСТИК */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; }
-        .modal-content { position: relative; width: 90%; max-width: 600px; margin: 10% auto; background: #fff; padding: 10px; border-radius: 15px; }
+        .modal-content { position: relative; width: 90%; max-width: 600px; margin: 5% auto; background: #fff; padding: 10px; border-radius: 15px; }
+        .close-btn { position: absolute; top: -40px; right: 0; color: white; font-size: 2em; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -61,9 +64,11 @@
         
         <div id="openState" class="content">
             <div class="header-active" onclick="toggleRoute(false)">
-                <h3 style="margin:0; text-align: center;">Кора вокруг резиденции Далай-ламы</h3>
-                <p style="margin:5px 0 0; text-align: center; font-size: 0.8em; color: #888;">Традиционный путь паломников</p>
-                <span class="arrow-up" style="text-align: center;">▲</span>
+                <div>
+                    <h3 style="margin:0;">Кора вокруг резиденции</h3>
+                    <p style="margin:0; font-size: 0.8em; color: #888;">Путь паломников</p>
+                </div>
+                <span class="arrow-up">▲</span>
             </div>
             
             <button class="btn btn-outline" style="margin-bottom: 15px;" onclick="document.getElementById('mapModal').style.display='block'">Посмотреть карту маршрута</button>
@@ -80,6 +85,7 @@
 
     <div id="mapModal" class="modal" onclick="this.style.display='none'">
         <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="document.getElementById('mapModal').style.display='none'">&times;</span>
             <iframe src="https://www.google.com/maps/embed?pb=!1m52!1m12!1m3!1d1045.9900366916454!2d76.32403834286286!3d32.23231950792452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m37!3e2!4m5!1s0x391b516068f7cfd7%3A0x5aec125fb5dc2930!2sStart%20of%20the%20Kora%20Circuit%2C%20Temple%20Rd%2C%20McLeod%20Ganj%2C%20Dharamshala%2C%20Himachal%20Pradesh%20176215%2C%20%D0%98%D0%BD%D0%B4%D0%B8%D1%8F!3m2!1d32.2320218!2d76.3252083!4m5!1s0x391b510049b26e5d%3A0xdfa6f391303dee3d!2sCircumambulation%20Way%20Dalai%20Lama%20Temple%2C%2068JG%2BF9P%2C%20Dharamshala%2C%20Himachal%20Pradesh%20176215%2C%20%D0%98%D0%BD%D0%B4%D0%B8%D1%8F!3m2!1d32.2312206!2d76.3259633!4m3!3m2!1d32.2292724!2d76.32523979999999!4m3!3m2!1d32.2283551!2d76.3233343!4m3!3m2!1d32.2298621!2d76.3226992!4m3!3m2!1d32.2310939!2d76.3237216!4m3!3m2!1d32.23307!2d76.32452719999999!4m3!3m2!1d32.232599!2d76.3248759!5e0!3m2!1sru!2sru!4v1783443888358!5m2!1sru!2sru" width="100%" height="400" style="border:0; border-radius:15px;"></iframe>
         </div>
     </div>

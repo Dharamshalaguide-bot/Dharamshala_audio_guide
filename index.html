@@ -8,16 +8,17 @@
         :root { --accent: #2d5a27; }
         body { font-family: 'Segoe UI', sans-serif; background: url('hills.jpg') center/cover fixed; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
         .card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border-radius: 20px; padding: 25px; width: 90%; max-width: 450px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin-bottom: 20px; text-align: center; }
-        h1 { color: #ffffff; text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); margin-bottom: 30px; font-weight: 300; }
         
-        .btn-toggle { background: var(--accent); color: white; border: none; padding: 15px; border-radius: 15px; width: 100%; cursor: pointer; font-weight: bold; transition: 0.3s; }
-        .content { display: none; margin-top: 15px; text-align: left; }
+        /* Стили стрелки */
+        .header-toggle { cursor: pointer; display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .arrow { transition: transform 0.3s; font-size: 1.5em; color: var(--accent); }
+        .rotate { transform: rotate(180deg); }
         
-        .map-btn { background: transparent; color: var(--accent); border: 2px solid var(--accent); padding: 12px; border-radius: 15px; width: 100%; cursor: pointer; font-weight: bold; margin-bottom: 15px; transition: 0.3s; }
-        .map-btn:hover { background: var(--accent); color: white; }
+        .content { display: none; margin-top: 20px; text-align: left; border-top: 1px solid #eee; pt: 15px; }
+        .map-btn { background: transparent; color: var(--accent); border: 2px solid var(--accent); padding: 12px; border-radius: 15px; width: 100%; cursor: pointer; font-weight: bold; margin-bottom: 15px; }
         
-        .stop { border-top: 1px solid #ddd; padding: 15px 0; }
-        .play-small { background: var(--accent); color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 0.85em; margin-top: 5px; }
+        .stop { padding: 15px 0; border-bottom: 1px solid #eee; }
+        .play-small { background: var(--accent); color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 0.8em; }
         
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; }
         .modal-content { position: relative; width: 95%; max-width: 700px; margin: 10% auto; background: #fff; padding: 10px; border-radius: 20px; }
@@ -27,49 +28,45 @@
 
     <h1>Dharamshala Guide</h1>
 
-    <!-- 1. ПРИВЕТСТВИЕ -->
     <div class="card">
         <h3>Добро пожаловать</h3>
         <p>Начните ваше путешествие по Дхарамсале</p>
-        <button class="btn-toggle" onclick="document.getElementById('welcomeAudio').style.display='block'; this.style.display='none'">Слушать приветствие</button>
-        <audio id="welcomeAudio" style="display:none; width:100%;" controls><source src="Welcome.mp3" type="audio/mpeg"></audio>
+        <button class="play-small" onclick="document.getElementById('welcomeAudio').play()">Слушать приветствие</button>
+        <audio id="welcomeAudio"><source src="Welcome.mp3"></audio>
     </div>
 
-    <!-- 2. КОРА (Раскрывающийся список) -->
     <div class="card">
-        <h3>Кора вокруг резиденции Далай-ламы</h3>
-        <p>Традиционный путь паломников</p>
-        <button class="btn-toggle" onclick="toggleAccordion(this)">Раскрыть маршрут</button>
+        <div class="header-toggle" onclick="toggleRoute(this)">
+            <div style="text-align: left;">
+                <h3 style="margin:0;">Кора вокруг резиденции Далай-ламы</h3>
+                <p style="margin:0; font-size: 0.85em; color: #666;">Традиционный путь паломников</p>
+            </div>
+            <span class="arrow">▼</span>
+        </div>
         
         <div id="routeContent" class="content">
             <button class="map-btn" onclick="document.getElementById('mapModal').style.display='block'">Посмотреть карту маршрута</button>
-            
             <div class="stop"><h4>Остановка 1: Старт Коры</h4><button class="play-small" onclick="document.getElementById('a1').play()">Слушать</button><audio id="a1"><source src="stop1.mp3"></audio></div>
-            <div class="stop"><h4>Остановка 2: Молитвенные барабаны</h4><button class="play-small" onclick="document.getElementById('a2').play()">Слушать</button><audio id="a2"><source src="stop2.mp3"></audio></div>
-            <div class="stop"><h4>Остановка 3: Молитвенные флажки</h4><button class="play-small" onclick="document.getElementById('a3').play()">Слушать</button><audio id="a3"><source src="stop3.mp3"></audio></div>
-            <div class="stop"><h4>Остановка 4: Вид на Гималаи</h4><button class="play-small" onclick="document.getElementById('a4').play()">Слушать</button><audio id="a4"><source src="stop4.mp3"></audio></div>
-            <div class="stop"><h4>Остановка 5: Ступы и мантры</h4><button class="play-small" onclick="document.getElementById('a5').play()">Слушать</button><audio id="a5"><source src="stop5.mp3"></audio></div>
-            <div class="stop"><h4>Остановка 6: Мемориальная роща</h4><button class="play-small" onclick="document.getElementById('a6').play()">Слушать</button><audio id="a6"><source src="stop6.mp3"></audio></div>
-            <div class="stop"><h4>Остановка 7: Ворота храма</h4><button class="play-small" onclick="document.getElementById('a7').play()">Слушать</button><audio id="a7"><source src="stop7.mp3"></audio></div>
-        </div>
+            </div>
     </div>
 
-    <!-- МОДАЛЬНОЕ ОКНО -->
     <div id="mapModal" class="modal" onclick="this.style.display='none'">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <iframe src="ВАША_ССЫЛКА_НА_КАРТУ" width="100%" height="400" style="border:0; border-radius:15px;"></iframe>
+            <iframe src="ВАША_ССЫЛКА_ИЗ_GOOGLE" width="100%" height="400" style="border:0; border-radius:15px;"></iframe>
         </div>
     </div>
 
     <script>
-        function toggleAccordion(btn) {
+        function toggleRoute(el) {
             var content = document.getElementById("routeContent");
+            var arrow = el.querySelector(".arrow");
+            
             if (content.style.display === "block") {
                 content.style.display = "none";
-                btn.innerHTML = "Раскрыть маршрут";
+                arrow.classList.remove("rotate");
             } else {
                 content.style.display = "block";
-                btn.innerHTML = "Свернуть маршрут";
+                arrow.classList.add("rotate");
             }
         }
     </script>

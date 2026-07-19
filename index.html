@@ -6,16 +6,17 @@
     <title>Dharamshala Guide</title>
     <style>
         :root { 
-            --bg: #FAFAFA; 
+            --bg: #FDFBF7; /* Сливочный фоновый цвет */
             --card-bg: #F4EAE5; 
             --accent: #70887A; 
             --secondary: #D7B19C; 
-            --text: #998F8A; 
+            --text-main: #998F8A; 
             --radius: 12px; 
         }
         body { 
             font-family: 'Segoe UI', sans-serif; 
             background-color: var(--bg); 
+            color: var(--text-main);
             margin: 0; padding: 20px; 
             display: flex; flex-direction: column; align-items: center; min-height: 100vh; 
         }
@@ -23,16 +24,16 @@
         h1 { color: var(--accent); margin-bottom: 40px; font-weight: 300; letter-spacing: 1px; }
         
         .card { 
-            background: rgba(255, 255, 255, 0.9); 
+            background: rgba(255, 255, 255, 0.6); /* Полупрозрачный белый для контраста */
             border: 1px solid var(--card-bg);
             border-radius: 20px; 
             padding: 25px; width: 90%; max-width: 450px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03); 
             margin-bottom: 20px; text-align: center;
         }
         
-        h3 { margin: 0 0 10px; font-size: 1.2em; color: var(--accent); }
-        p { margin: 0 0 15px; font-size: 0.95em; color: var(--text); line-height: 1.5; }
+        h3, h4 { margin: 0 0 10px; font-size: 1.2em; color: var(--text-main); font-weight: 600; }
+        p { margin: 0 0 15px; font-size: 0.95em; color: var(--text-main); line-height: 1.5; }
 
         .btn { font-family: inherit; font-size: 0.9em; font-weight: 600; padding: 12px 20px; border-radius: var(--radius); border: none; cursor: pointer; transition: 0.3s; display: inline-block; text-align: center; }
         .btn-full { background: var(--accent); color: white; width: 100%; }
@@ -48,7 +49,7 @@
         .audio-container { margin-top: 10px; display: none; width: 100%; }
         audio { width: 100%; height: 35px; }
 
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 1000; }
         .modal-content { position: relative; width: 90%; max-width: 600px; margin: 5% auto; background: #fff; padding: 10px; border-radius: 15px; }
         .close-btn { position: absolute; top: -40px; right: 0; color: white; font-size: 2em; cursor: pointer; }
     </style>
@@ -73,7 +74,7 @@
         
         <div id="openState" class="content">
             <div class="header-active" onclick="toggleRoute(false)">
-                <div><h3 style="margin:0;">Кора вокруг резиденции Далай-ламы</h3><p style="margin:0; font-size: 0.8em; color: #888;">Традиционный путь паломников</p></div>
+                <div><h3 style="margin:0;">Кора вокруг резиденции Далай-ламы</h3><p style="margin:0; font-size: 0.8em; color: var(--text-main);">Традиционный путь паломников</p></div>
                 <span class="arrow-up">▲</span>
             </div>
             
@@ -104,4 +105,3 @@
     </script>
 </body>
 </html>
-

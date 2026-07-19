@@ -5,35 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dharamshala Guide</title>
     <style>
-        :root { --accent: #2d5a27; --radius: 12px; }
-        body { font-family: 'Segoe UI', sans-serif; background: url('hills.JPG') center/cover fixed; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        :root { 
+            --bg: #FAFAFA; 
+            --card-bg: #F4EAE5; 
+            --accent: #70887A; 
+            --secondary: #D7B19C; 
+            --text: #998F8A; 
+            --radius: 12px; 
+        }
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background-color: var(--bg); 
+            margin: 0; padding: 20px; 
+            display: flex; flex-direction: column; align-items: center; min-height: 100vh; 
+        }
         
-        h1 { color: #ffffff; text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); margin-bottom: 40px; font-weight: 300; letter-spacing: 1px; }
+        h1 { color: var(--accent); margin-bottom: 40px; font-weight: 300; letter-spacing: 1px; }
         
         .card { 
-            background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(15px); border-radius: 20px; 
-            padding: 25px; width: 90%; max-width: 450px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); 
+            background: rgba(255, 255, 255, 0.9); 
+            border: 1px solid var(--card-bg);
+            border-radius: 20px; 
+            padding: 25px; width: 90%; max-width: 450px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
             margin-bottom: 20px; text-align: center;
         }
         
-        h3 { margin: 0 0 10px; font-size: 1.2em; color: #333; }
-        p { margin: 0 0 15px; font-size: 0.95em; color: #555; line-height: 1.5; }
+        h3 { margin: 0 0 10px; font-size: 1.2em; color: var(--accent); }
+        p { margin: 0 0 15px; font-size: 0.95em; color: var(--text); line-height: 1.5; }
 
         .btn { font-family: inherit; font-size: 0.9em; font-weight: 600; padding: 12px 20px; border-radius: var(--radius); border: none; cursor: pointer; transition: 0.3s; display: inline-block; text-align: center; }
         .btn-full { background: var(--accent); color: white; width: 100%; }
         .btn-outline { background: transparent; color: var(--accent); border: 2px solid var(--accent); width: 100%; }
-        .btn-small { background: var(--accent); color: white; padding: 6px 14px; border-radius: 15px; font-size: 0.8em; }
+        .btn-small { background: var(--secondary); color: white; padding: 6px 14px; border-radius: 15px; font-size: 0.8em; }
 
         .header-active { display: flex; justify-content: space-between; align-items: center; cursor: pointer; margin-bottom: 15px; }
         .arrow-up { font-size: 1.2em; color: var(--accent); margin-left: 10px; }
         
-        .content { display: none; margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; text-align: left; }
-        .stop { padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
+        .content { display: none; margin-top: 20px; border-top: 1px solid var(--card-bg); padding-top: 15px; text-align: left; }
+        .stop { padding: 12px 0; border-bottom: 1px solid var(--card-bg); }
         
         .audio-container { margin-top: 10px; display: none; width: 100%; }
         audio { width: 100%; height: 35px; }
 
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; }
         .modal-content { position: relative; width: 90%; max-width: 600px; margin: 5% auto; background: #fff; padding: 10px; border-radius: 15px; }
         .close-btn { position: absolute; top: -40px; right: 0; color: white; font-size: 2em; cursor: pointer; }
     </style>
@@ -89,3 +104,4 @@
     </script>
 </body>
 </html>
+

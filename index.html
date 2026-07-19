@@ -81,11 +81,25 @@
         <div id="welcomeAudioCont" class="audio-container"><audio id="audioWelcome" controls><source src="Welcome.mp3"></audio></div>
     </div>
 
-    <!-- Карточка: Буддийская символика -->
+    <!-- Карточка: Буддийская символика (в стиле «Коры вокруг резиденции») -->
     <div class="card">
-        <h3>Буддийская символика</h3>
-        <p class="subtitle">8 благоприятных символов (Аштамангала)</p>
-        <a href="8_symbols_2.pdf" target="_blank" class="btn btn-full" style="margin-top: 5px;">Смотреть PDF-гид</a>
+        <div id="closedSymbolState">
+            <h3>Буддийская символика</h3>
+            <p class="subtitle">Сакральные знаки и их значение</p>
+            <button class="btn btn-full" onclick="toggleSymbol(true)">Смотреть</button>
+        </div>
+        
+        <div id="openSymbolState" class="content">
+            <div class="header-active" onclick="toggleSymbol(false)">
+                <div><h3>Буддийская символика</h3><p class="subtitle">Сакральные знаки и их значение</p></div>
+                <span>▲</span>
+            </div>
+            
+            <div class="stop">
+                <span class="stop-text">1. 8 благоприятных символов</span>
+                <a href="8_symbols_2.pdf" target="_blank" class="btn btn-small">Скачать</a>
+            </div>
+        </div>
     </div>
 
     <div class="card">
@@ -121,6 +135,11 @@
     </div>
 
     <script>
+        function toggleSymbol(open) {
+            document.getElementById('closedSymbolState').style.display = open ? 'none' : 'block';
+            document.getElementById('openSymbolState').style.display = open ? 'block' : 'none';
+        }
+
         function toggleRoute(open) {
             document.getElementById('closedState').style.display = open ? 'none' : 'block';
             document.getElementById('openState').style.display = open ? 'block' : 'none';

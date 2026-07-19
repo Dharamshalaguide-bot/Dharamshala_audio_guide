@@ -1,41 +1,42 @@
+HTML
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Аудиогид по Дхарамсале | Юлия Мухина</title>
-    <!-- Добавьте здесь ваши стили -->
+    <title>Аудиогид по Дхарамшале</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .section { margin-bottom: 40px; }
+        .card { border: 1px solid #ddd; padding: 15px; border-radius: 8px; background: #f9f9f9; }
+        .btn { display: inline-block; padding: 10px 20px; text-decoration: none; color: #333; border: 1px solid #333; border-radius: 5px; margin-top: 10px; }
+    </style>
 </head>
 <body>
 
-<header>
-    <h1>Аудиогид по Дхарамсале</h1>
-    <p>Авторские экскурсии от географа и гида Юлии Мухиной</p>
-</header>
+    <header>
+        <h1>Аудиогид: Дхарамшала</h1>
+    </header>
 
-<main>
-    <!-- Ваш основной контент (маршруты, описания и т.д.) -->
-    <section class="stop">
-        <h2>Приветствие</h2>
-        <p>Добро пожаловать в мой авторский путеводитель по местам, которые стали для меня вторым домом[cite: 2].</p>
-    </section>
+    <main>
+        <!-- Раздел с приветствием -->
+        <section class="section" id="welcome">
+            <h2>Добро пожаловать</h2>
+            <p>Этот аудиогид поможет вам лучше понять культуру и историю этого удивительного места.</p>
+        </section>
 
-    <!-- НОВЫЙ РАЗДЕЛ -->
-    <section class="section" id="symbolism">
-        <h2>Буддийская символика</h2>
-        <p>Монастырские стены и входы украшены священными узорами. Чтобы прогулка стала глубже, изучите значение восьми благих символов (Аштамангала), которые вы встретите на маршруте.</p>
-        
-        <div class="card">
-            <p><strong>Шпаргалка: Аштамангала</strong></p>
-            <p>Узнавайте символы на тханках и дверных косяках.</p>
-            <a href="symbols.pdf" class="btn btn-outline" download>Скачать PDF-гид</a>
-        </div>
-    </section>
-</main>
-
-<footer>
-    <p>© 2026 Юлия Мухина</p>
-</footer>
+        <!-- Раздел Буддийская символика -->
+        <section class="section" id="symbolism">
+            <h2>Буддийская символика</h2>
+            <p>Монастырские стены и входы украшены священными узорами. Чтобы прогулка стала глубже, изучите значение восьми благих символов (Аштамангала), которые вы встретите на маршруте.</p>
+            
+            <div class="card">
+                <p><strong>Шпаргалка: Аштамангала</strong></p>
+                <p>Узнавайте символы на тханках и дверных косяках[cite: 1].</p>
+                <a href="8_symbols_2.pdf" class="btn btn-outline" download>Скачать PDF-гид</a>
+            </div>
+        </section>
+    </main>
 
 </body>
 </html>

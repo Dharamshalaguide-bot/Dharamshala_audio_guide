@@ -51,7 +51,7 @@
         
         .stop-text { font-size: 0.85em; font-weight: 600; color: var(--text-main); }
 
-        .btn { font-family: inherit; font-size: 0.85em; font-weight: 600; padding: 8px 14px; border-radius: 20px; border: none; cursor: pointer; transition: 0.3s; }
+        .btn { font-family: inherit; font-size: 0.85em; font-weight: 600; padding: 8px 14px; border-radius: 20px; border: none; cursor: pointer; transition: 0.3s; text-decoration: none; display: inline-block; text-align: center; box-sizing: border-box; }
         .btn-full { background: var(--accent); color: white; width: 100%; }
         .btn-outline { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); width: 100%; padding: 10px; margin-bottom: 15px; }
         .btn-small { background: var(--secondary); color: white; }
@@ -79,6 +79,14 @@
         <p class="subtitle">Знакомство с гидом</p>
         <button class="btn btn-full" onclick="document.getElementById('welcomeAudioCont').style.display='block'; document.getElementById('audioWelcome').play(); this.style.display='none'">Слушать</button>
         <div id="welcomeAudioCont" class="audio-container"><audio id="audioWelcome" controls><source src="Welcome.mp3"></audio></div>
+    </div>
+
+    <!-- Карточка: Буддийская символика (открыта по умолчанию, с кнопкой скачивания) -->
+    <div class="card">
+        <h3>Буддийская символика</h3>
+        <p class="subtitle">8 благоприятных символов (Аштамангала)</p>
+        <p style="font-size: 0.85em; text-align: left; margin-bottom: 15px;">Монастырские стены и входы украшены священными узорами. Изучите значение восьми благих символов, которые вы встретите на маршруте.</p>
+        <a href="8_symbols_2.pdf" class="btn btn-outline" download>Скачать PDF-гид</a>
     </div>
 
     <div class="card">

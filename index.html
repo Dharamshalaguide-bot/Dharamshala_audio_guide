@@ -6,7 +6,7 @@
     <title>Dharamshala Guide</title>
     <style>
         :root { 
-            --bg: #FDFBF7; /* Сливочный фоновый цвет */
+            --bg: #FDFBF7; 
             --card-bg: #F4EAE5; 
             --accent: #70887A; 
             --secondary: #D7B19C; 
@@ -21,37 +21,35 @@
             display: flex; flex-direction: column; align-items: center; min-height: 100vh; 
         }
         
-        h1 { color: var(--accent); margin-bottom: 40px; font-weight: 300; letter-spacing: 1px; }
+        h1 { color: var(--accent); margin-bottom: 30px; font-weight: 300; font-size: 1.4em; }
         
         .card { 
-            background: rgba(255, 255, 255, 0.6); /* Полупрозрачный белый для контраста */
+            background: rgba(255, 255, 255, 0.6); 
             border: 1px solid var(--card-bg);
             border-radius: 20px; 
-            padding: 25px; width: 90%; max-width: 450px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03); 
+            padding: 20px; width: 90%; max-width: 450px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02); 
             margin-bottom: 20px; text-align: center;
         }
         
-        h3, h4 { margin: 0 0 10px; font-size: 1.2em; color: var(--text-main); font-weight: 600; }
-        p { margin: 0 0 15px; font-size: 0.95em; color: var(--text-main); line-height: 1.5; }
+        h3 { margin: 0 0 5px; font-size: 1em; color: var(--text-main); font-weight: 600; }
+        .subtitle { font-size: 0.8em; color: var(--text-main); margin-bottom: 15px; }
+        
+        /* Единый стиль для текста пунктов и кнопок */
+        .stop-text { font-size: 0.85em; font-weight: 600; color: var(--text-main); }
 
-        .btn { font-family: inherit; font-size: 0.9em; font-weight: 600; padding: 12px 20px; border-radius: var(--radius); border: none; cursor: pointer; transition: 0.3s; display: inline-block; text-align: center; }
+        .btn { font-family: inherit; font-size: 0.85em; font-weight: 600; padding: 8px 14px; border-radius: 20px; border: none; cursor: pointer; transition: 0.3s; }
         .btn-full { background: var(--accent); color: white; width: 100%; }
-        .btn-outline { background: transparent; color: var(--accent); border: 2px solid var(--accent); width: 100%; }
-        .btn-small { background: var(--secondary); color: white; padding: 6px 14px; border-radius: 15px; font-size: 0.8em; }
+        .btn-outline { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); width: 100%; padding: 10px; margin-bottom: 15px; }
+        .btn-small { background: var(--secondary); color: white; }
 
         .header-active { display: flex; justify-content: space-between; align-items: center; cursor: pointer; margin-bottom: 15px; }
-        .arrow-up { font-size: 1.2em; color: var(--accent); margin-left: 10px; }
         
-        .content { display: none; margin-top: 20px; border-top: 1px solid var(--card-bg); padding-top: 15px; text-align: left; }
-        .stop { padding: 12px 0; border-bottom: 1px solid var(--card-bg); }
+        .content { display: none; margin-top: 15px; border-top: 1px solid var(--card-bg); padding-top: 15px; text-align: left; }
+        .stop { padding: 10px 0; border-bottom: 1px solid var(--card-bg); display: flex; justify-content: space-between; align-items: center; }
         
-        .audio-container { margin-top: 10px; display: none; width: 100%; }
-        audio { width: 100%; height: 35px; }
-
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 1000; }
-        .modal-content { position: relative; width: 90%; max-width: 600px; margin: 5% auto; background: #fff; padding: 10px; border-radius: 15px; }
-        .close-btn { position: absolute; top: -40px; right: 0; color: white; font-size: 2em; cursor: pointer; }
+        .audio-container { margin-top: 8px; display: none; width: 100%; }
+        audio { width: 100%; height: 30px; }
     </style>
 </head>
 <body>
@@ -60,40 +58,33 @@
 
     <div class="card">
         <h3>Добро пожаловать</h3>
-        <p>Знакомство с гидом</p>
-        <button class="btn btn-full" onclick="document.getElementById('welcomeAudioCont').style.display='block'; document.getElementById('audioWelcome').play(); this.style.display='none'">Слушать приветствие</button>
+        <p class="subtitle">Знакомство с гидом</p>
+        <button class="btn btn-full" onclick="document.getElementById('welcomeAudioCont').style.display='block'; document.getElementById('audioWelcome').play(); this.style.display='none'">Слушать</button>
         <div id="welcomeAudioCont" class="audio-container"><audio id="audioWelcome" controls><source src="Welcome.mp3"></audio></div>
     </div>
 
     <div class="card">
         <div id="closedState">
-            <h3>Кора вокруг резиденции Далай-ламы</h3>
-            <p>Традиционный путь паломников</p>
+            <h3>Кора вокруг резиденции</h3>
+            <p class="subtitle">Традиционный путь паломников</p>
             <button class="btn btn-full" onclick="toggleRoute(true)">Раскрыть маршрут</button>
         </div>
         
         <div id="openState" class="content">
             <div class="header-active" onclick="toggleRoute(false)">
-                <div><h3 style="margin:0;">Кора вокруг резиденции Далай-ламы</h3><p style="margin:0; font-size: 0.8em; color: var(--text-main);">Традиционный путь паломников</p></div>
-                <span class="arrow-up">▲</span>
+                <div><h3>Кора вокруг резиденции</h3><p class="subtitle">Традиционный путь паломников</p></div>
+                <span>▲</span>
             </div>
             
-            <button class="btn btn-outline" style="margin-bottom: 15px;" onclick="document.getElementById('mapModal').style.display='block'">Посмотреть карту маршрута</button>
+            <button class="btn btn-outline" onclick="document.getElementById('mapModal').style.display='block'">Посмотреть карту маршрута</button>
             
-            <div class="stop"><div style="display:flex; justify-content:space-between; align-items:center;"><h4>1. Старт Коры</h4><button class="btn btn-small" onclick="document.getElementById('p1').style.display='block'; document.getElementById('a1').play()">Слушать</button></div><div id="p1" class="audio-container"><audio id="a1" controls><source src="stop1.mp3"></audio></div></div>
-            <div class="stop"><div style="display:flex; justify-content:space-between; align-items:center;"><h4>2. Молитвенные барабаны</h4><button class="btn btn-small" onclick="document.getElementById('p2').style.display='block'; document.getElementById('a2').play()">Слушать</button></div><div id="p2" class="audio-container"><audio id="a2" controls><source src="stop2.mp3"></audio></div></div>
-            <div class="stop"><div style="display:flex; justify-content:space-between; align-items:center;"><h4>3. Молитвенные флажки</h4><button class="btn btn-small" onclick="document.getElementById('p3').style.display='block'; document.getElementById('a3').play()">Слушать</button></div><div id="p3" class="audio-container"><audio id="a3" controls><source src="stop3.mp3"></audio></div></div>
-            <div class="stop"><div style="display:flex; justify-content:space-between; align-items:center;"><h4>4. Вид на Гималаи</h4><button class="btn btn-small" onclick="document.getElementById('p4').style.display='block'; document.getElementById('a4').play()">Слушать</button></div><div id="p4" class="audio-container"><audio id="a4" controls><source src="stop4.mp3"></audio></div></div>
-            <div class="stop"><div style="display:flex; justify-content:space-between; align-items:center;"><h4>5. Ступы и мантры</h4><button class="btn btn-small" onclick="document.getElementById('p5').style.display='block'; document.getElementById('a5').play()">Слушать</button></div><div id="p5" class="audio-container"><audio id="a5" controls><source src="stop5.mp3"></audio></div></div>
-            <div class="stop"><div style="display:flex; justify-content:space-between; align-items:center;"><h4>6. Мемориальная роща</h4><button class="btn btn-small" onclick="document.getElementById('p6').style.display='block'; document.getElementById('a6').play()">Слушать</button></div><div id="p6" class="audio-container"><audio id="a6" controls><source src="stop6.mp3"></audio></div></div>
-            <div class="stop"><div style="display:flex; justify-content:space-between; align-items:center;"><h4>7. Ворота храма</h4><button class="btn btn-small" onclick="document.getElementById('p7').style.display='block'; document.getElementById('a7').play()">Слушать</button></div><div id="p7" class="audio-container"><audio id="a7" controls><source src="stop7.mp3"></audio></div></div>
-        </div>
-    </div>
-
-    <div id="mapModal" class="modal" onclick="this.style.display='none'">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="document.getElementById('mapModal').style.display='none'">×</span>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m52!1m12!1m3!1d1045.9900366916454!2d76.32403834286286!3d32.23231950792452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m37!3e2!4m5!1s0x391b516068f7cfd7%3A0x5aec125fb5dc2930!2sStart%20of%20the%20Kora%20Circuit%2C%20Temple%20Rd%2C%20McLeod%20Ganj%2C%20Dharamshala%2C%20Himachal%20Pradesh%20176215%2C%20%D0%98%D0%BD%D0%B4%D0%B8%D1%8F!3m2!1d32.2320218!2d76.3252083!4m5!1s0x391b510049b26e5d%3A0xdfa6f391303dee3d!2sCircumambulation%20Way%20Dalai%20Lama%20Temple%2C%2068JG%2BF9P%2C%20Dharamshala%2C%20Himachal%20Pradesh%20176215%2C%20%D0%98%D0%BD%D0%B4%D0%B8%D1%8F!3m2!1d32.2312206!2d76.3259633!4m3!3m2!1d32.2292724!2d76.32523979999999!4m3!3m2!1d32.2283551!2d76.3233343!4m3!3m2!1d32.2298621!2d76.3226992!4m3!3m2!1d32.2310939!2d76.3237216!4m3!3m2!1d32.23307!2d76.32452719999999!4m3!3m2!1d32.232599!2d76.3248759!5e0!3m2!1sru!2sru!4v1783443888358!5m2!1sru!2sru" width="100%" height="400" style="border:0; border-radius:15px;"></iframe>
+            <div class="stop"><span class="stop-text">1. Старт Коры</span><button class="btn btn-small" onclick="document.getElementById('p1').style.display='block'; document.getElementById('a1').play()">Слушать</button></div><div id="p1" class="audio-container"><audio id="a1" controls><source src="stop1.mp3"></audio></div>
+            <div class="stop"><span class="stop-text">2. Молитвенные барабаны</span><button class="btn btn-small" onclick="document.getElementById('p2').style.display='block'; document.getElementById('a2').play()">Слушать</button></div><div id="p2" class="audio-container"><audio id="a2" controls><source src="stop2.mp3"></audio></div>
+            <div class="stop"><span class="stop-text">3. Молитвенные флажки</span><button class="btn btn-small" onclick="document.getElementById('p3').style.display='block'; document.getElementById('a3').play()">Слушать</button></div><div id="p3" class="audio-container"><audio id="a3" controls><source src="stop3.mp3"></audio></div>
+            <div class="stop"><span class="stop-text">4. Вид на Гималаи</span><button class="btn btn-small" onclick="document.getElementById('p4').style.display='block'; document.getElementById('a4').play()">Слушать</button></div><div id="p4" class="audio-container"><audio id="a4" controls><source src="stop4.mp3"></audio></div>
+            <div class="stop"><span class="stop-text">5. Ступы и мантры</span><button class="btn btn-small" onclick="document.getElementById('p5').style.display='block'; document.getElementById('a5').play()">Слушать</button></div><div id="p5" class="audio-container"><audio id="a5" controls><source src="stop5.mp3"></audio></div>
+            <div class="stop"><span class="stop-text">6. Мемориальная роща</span><button class="btn btn-small" onclick="document.getElementById('p6').style.display='block'; document.getElementById('a6').play()">Слушать</button></div><div id="p6" class="audio-container"><audio id="a6" controls><source src="stop6.mp3"></audio></div>
+            <div class="stop"><span class="stop-text">7. Ворота храма</span><button class="btn btn-small" onclick="document.getElementById('p7').style.display='block'; document.getElementById('a7').play()">Слушать</button></div><div id="p7" class="audio-container"><audio id="a7" controls><source src="stop7.mp3"></audio></div>
         </div>
     </div>
 
